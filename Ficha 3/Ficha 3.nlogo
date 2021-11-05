@@ -1,5 +1,6 @@
 ;;AGENTE REACTIVO
 turtles-own[energia]
+formigas-own[nErva]
 
 ;;Passo 2
 breed[formigas formiga]
@@ -55,6 +56,7 @@ to setup-turtles
     [
       setxy random-xcor random-ycor
     ]
+    set nErva 0
   ]
   create-caracois ncaracois[
     set shape "target"
@@ -82,14 +84,25 @@ to go
   ]   ;;Passo 2
   ChangeArmadilhas  ;;Passo 4
   if Mimetismo?
-    [
-      Mimetismo
-    ]      ;;Passo 6
+  [
+    Mimetismo
+  ]      ;;Passo 6
+  morte-agentes
   if count turtles = 0
    [
      stop
    ]
   tick
+end
+
+to morte-agentes
+  ask turtles
+  [
+    if energia <= 0
+    [
+      die
+    ]
+  ]
 end
 
 to MoveFormigas
@@ -103,13 +116,18 @@ to MoveFormigas
       ifelse [pcolor] of patch-ahead 1 = blue
       [
         fd 1 ;; � frente � ninho, avan�a e desaparece
-        set nNinhoAzul nNinhoAzul + 1  ;;Passo 3
+        set nNinhoAzul nNinhoAzul + nErva  ;;Passo 3
+        set nErva 0
       ]
       [
         ifelse [pcolor] of patch-ahead 1 = green
         [
           fd 1
           set energia energia + 50
+          if nErva < capMax
+          [
+            set nErva nErva + 1
+          ]
           set pcolor black
         ]
         [
@@ -177,55 +195,75 @@ end
 to MoveCaracois2
   ask caracois
   [
-    ifelse [pcolor] of patch-ahead 1 = yellow
+    ifelse [pcolor] of patch-ahead 1 = green
     [
       fd 1
-      set nNinhoAmarelo nNinhoAmarelo + 1
-      ;die
+      set energia energia + 50
+      set pcolor black
     ]
     [
-      ifelse [pcolor] of patch-left-and-ahead 90 1 = yellow
+      ifelse [pcolor] of patch-ahead 1 = yellow
       [
-        lt 90
         fd 1
         set nNinhoAmarelo nNinhoAmarelo + 1
         ;die
       ]
       [
-        ifelse [pcolor] of patch-right-and-ahead 90 1 = yellow
+        ifelse [pcolor] of patch-left-and-ahead 90 1 = yellow
         [
-          rt 90
+          lt 90
           fd 1
           set nNinhoAmarelo nNinhoAmarelo + 1
           ;die
         ]
         [
-          ifelse [pcolor] of patch-ahead 1 = red
+          ifelse [pcolor] of patch-right-and-ahead 90 1 = yellow
           [
             rt 90
+            fd 1
+            set nNinhoAmarelo nNinhoAmarelo + 1
+            ;die
           ]
           [
-            ifelse [pcolor] of patch-left-and-ahead 90 1 = red
+            ifelse [pcolor] of patch-ahead 1 = red
             [
-              fd 1
+              rt 90
             ]
             [
-              ifelse [pcolor] of patch-right-and-ahead 90 1 = red
+              ifelse [pcolor] of patch-left-and-ahead 90 1 = red
               [
                 fd 1
               ]
               [
-                ifelse random 101 <= 90
+                ifelse [pcolor] of patch-right-and-ahead 90 1 = red
                 [
                   fd 1
                 ]
                 [
-                  ifelse random 101 <= 50
+                  ifelse [pcolor] of patch-right-and-ahead 90 1 = green
                   [
                     rt 90
                   ]
                   [
-                    lt 90
+                    ifelse [pcolor] of patch-left-and-ahead 90 1 = green
+                    [
+                      lt 90
+                    ]
+                    [
+                      ifelse random 101 <= 90
+                      [
+                        fd 1
+                      ]
+                      [
+                        ifelse random 101 <= 50
+                        [
+                          rt 90
+                        ]
+                        [
+                          lt 90
+                        ]
+                      ]
+                    ]
                   ]
                 ]
               ]
@@ -234,6 +272,7 @@ to MoveCaracois2
         ]
       ]
     ]
+    set energia energia - 1
   ]
 end
 
@@ -448,6 +487,21 @@ count patches with [pcolor = green]
 17
 1
 11
+
+SLIDER
+195
+10
+367
+43
+capMax
+capMax
+0
+100
+50.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
