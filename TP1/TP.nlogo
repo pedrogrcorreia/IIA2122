@@ -26,16 +26,21 @@ to setup-patches-debug
   [
     set pcolor yellow
   ]
+;  ask patch -1 0
+;  [
+;    set pcolor red
+;  ]
 end
 
 to setup-turtles-debug
-  create-comiloes 1
+  create-limpadores 1
   [
     let x random 360 ; random entre 0 e 360 para o heading
-    set shape "fish 3"
+    set shape "bug"
     setxy -1 0
     set color red
-    set heading 90
+    set heading 0
+    set energia 100
   ]
 end
 
@@ -81,6 +86,7 @@ to setup-turtles
     ]
     set color red
     set heading x
+    set energia energiaInicial
   ]
 
   create-limpadores nlimpadores
@@ -94,6 +100,8 @@ to setup-turtles
     ]
     set color yellow
     set heading x
+    set energia energiaInicial
+    set qntResiduos 0
   ]
 end
 
@@ -124,12 +132,14 @@ to reset-patches ; resetar as quantidades de residuos no individuo
 end
 
 to go
+  check-death
+  comer
+  limpar
   move-comiloes
-  ;move-limpadores
-  ;check-death
+  move-limpadores
   if count turtles = 0
   [
-    ;stop
+    stop
   ]
   reset-patches
   tick
@@ -138,33 +148,151 @@ end
 to move-comiloes
   ask comiloes
   [
-    ask patch-ahead 1
+    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
     [
-      set pcolor red
+      ifelse [pcolor] of patch-ahead 1 = red
+      [
+        set energia energia - (energia * 0.1)
+      ]
+      [
+        set energia energia - (energia * 0.05)
+      ]
+      ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
+      [
+        rt 90
+      ]
+      [
+        lt 90
+      ]
     ]
-    ask patch-left-and-ahead 90 1
     [
-      set pcolor red
+      ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow
+      [
+        ifelse [pcolor] of patch-left-and-ahead 90 1 = red
+        [
+          set energia energia - (energia * 0.1)
+        ]
+        [
+          set energia energia - (energia * 0.05)
+        ]
+        fd 1
+      ]
+      [
+        ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
+        [
+          ifelse [pcolor] of patch-right-and-ahead 90 1 = red
+          [
+            set energia energia - (energia * 0.1)
+          ]
+          [
+            set energia energia - (energia * 0.05)
+          ]
+          fd 1
+        ]
+        [
+          fd 1
+        ]
+      ]
     ]
-    ask patch-right-and-ahead 90 1
-    [
-      set pcolor red
-    ]
-    fd 1
+    set energia energia - 1
   ]
 end
 
 to move-limpadores
   ask limpadores
   [
-    fd 1
+    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
+    [
+      fd 1
+    ]
+    [
+      ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
+      [
+        rt 90
+      ]
+      [
+        fd 1
+      ]
+    ]
+    set energia energia - 1
   ]
 end
+
+to check-death
+  ask turtles
+  [
+    if energia <= 0
+    [
+      die
+    ]
+  ]
+
+  ask comiloes
+  [
+    if [pcolor] of patch-here = red or [pcolor] of patch-here = yellow
+    [
+      die
+    ]
+  ]
+end
+
+to comer
+  ask comiloes
+  [
+    if [pcolor] of patch-here = green
+    [
+      set pcolor black
+      set energia energia + energiaAlimento
+    ]
+  ]
+  ask limpadores
+  [
+    if [pcolor] of patch-here = green
+    [
+      set pcolor black
+      ifelse qntResiduos < (transporte / 2)
+      [
+        set energia energia + energiaAlimento
+      ]
+      [
+        set energia energia + (energiaAlimento / 2)
+      ]
+    ]
+  ]
+end
+
+to limpar
+  ask limpadores
+  [
+    if qntResiduos < transporte - 1 ; para nao ultrapassar o max
+    [
+      if [pcolor] of patch-here = red
+      [
+        set qntResiduos qntResiduos + 2
+        set pcolor black
+      ]
+    ]
+    if qntResiduos < transporte
+    [
+      if [pcolor] of patch-here = yellow
+      [
+        set qntResiduos qntResiduos + 1
+        set pcolor black
+      ]
+    ]
+    if [pcolor] of patch-here = blue
+    [
+      set energia energia + (10 * qntResiduos)
+      set qntResiduos 0
+    ]
+  ]
+end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
-206
+169
 10
-643
+606
 448
 -1
 -1
@@ -206,13 +334,13 @@ NIL
 1
 
 BUTTON
-64
+111
 10
-119
+166
 43
 Go
 go
-NIL
+T
 1
 T
 OBSERVER
@@ -223,70 +351,70 @@ NIL
 1
 
 SLIDER
-6
-50
-43
-200
+3
+56
+36
+148
 lixo
 lixo
 0
 15
-7.0
-1
-1
-NIL
-VERTICAL
-
-SLIDER
-55
-51
-92
-201
-lixotoxico
-lixotoxico
-0
-15
-7.0
-1
-1
-NIL
-VERTICAL
-
-SLIDER
-106
-52
-143
-202
-alimento
-alimento
-5
-20
-10.0
-1
-1
-NIL
-VERTICAL
-
-SLIDER
-158
-51
-195
-201
-depositos
-depositos
-0
-10
 5.0
 1
 1
 NIL
 VERTICAL
 
-MONITOR
-654
+SLIDER
+44
+56
+77
+148
+lixotoxico
+lixotoxico
+0
+15
+5.0
+1
+1
+NIL
+VERTICAL
+
+SLIDER
+86
+57
+119
+149
+alimento
+alimento
+5
+20
+20.0
+1
+1
+NIL
+VERTICAL
+
+SLIDER
+128
+57
+161
+149
+depositos
+depositos
+0
 10
-711
-55
+4.0
+1
+1
+NIL
+VERTICAL
+
+MONITOR
+6
+351
+79
+396
 lixo
 count patches with [pcolor = yellow]
 17
@@ -294,10 +422,10 @@ count patches with [pcolor = yellow]
 11
 
 MONITOR
-722
-10
-779
-55
+90
+350
+164
+395
 ltoxico
 count patches with [pcolor = red]
 17
@@ -305,10 +433,10 @@ count patches with [pcolor = red]
 11
 
 MONITOR
-787
-11
-844
-56
+6
+401
+79
+446
 comida
 count patches with [pcolor = green]
 17
@@ -316,10 +444,10 @@ count patches with [pcolor = green]
 11
 
 MONITOR
-852
-11
-918
-56
+90
+402
+164
+447
 depositos
 count patches with [pcolor = blue]
 17
@@ -327,45 +455,90 @@ count patches with [pcolor = blue]
 11
 
 SLIDER
-5
-255
-195
-288
+4
+233
+163
+266
 nlimpadores
 nlimpadores
 0
 500
-250.0
+500.0
 20
 1
 NIL
 HORIZONTAL
 
 SLIDER
-5
-213
-194
-246
+4
+191
+163
+224
 ncomiloes
 ncomiloes
 0
 500
-260.0
+500.0
 20
 1
 NIL
 HORIZONTAL
 
 SWITCH
-121
+610
 11
-211
+700
 44
 debug?
 debug?
-0
+1
 1
 -1000
+
+SLIDER
+4
+271
+163
+304
+energiaAlimento
+energiaAlimento
+0
+50
+50.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+4
+309
+163
+342
+transporte
+transporte
+0
+20
+20.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+4
+154
+161
+187
+energiaInicial
+energiaInicial
+0
+200
+100.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -753,6 +926,43 @@ NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>count turtles</metric>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="debug?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="500"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="2"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
