@@ -1,7 +1,7 @@
 breed[comiloes comilao]
 breed[limpadores limpador]
 
-globals[qntComida qntLixo qntLixoT]
+globals[qntComida qntLixo qntLixoT babies]
 
 turtles-own[energia]
 limpadores-own[qntResiduos]
@@ -17,6 +17,7 @@ to setup
     setup-patches
     setup-turtles
   ]
+  set babies 0
   reset-ticks
 end
 
@@ -33,15 +34,33 @@ to setup-patches-debug
 end
 
 to setup-turtles-debug
-  create-limpadores 1
+;  create-limpadores 1
+;  [
+;    let x random 360 ; random entre 0 e 360 para o heading
+;    set shape "bug"
+;    setxy -1 0
+;    set color red
+;    set heading 0
+;    set energia 100
+;  ]
+  create-comiloes 1
   [
     let x random 360 ; random entre 0 e 360 para o heading
     set shape "bug"
-    setxy -1 0
+    setxy -1 -1
     set color red
     set heading 0
     set energia 100
   ]
+;  create-comiloes 1
+;  [
+;    let x random 360 ; random entre 0 e 360 para o heading
+;    set shape "bug"
+;    setxy -1 0
+;    set color red
+;    set heading 90
+;    set energia 100
+;  ]
 end
 
 to setup-patches
@@ -135,8 +154,22 @@ to go
   check-death
   comer
   limpar
+;  ifelse perc_comiloes? = "Base"
+;  [
+;    move-comiloes
+;  ]
+;  [
+;    ifelse perc_comiloes? = "Frente"
+;    [
+;      move-comiloes-frente
+;    ]
+;    [
+;      move-comiloes-todos
+;    ]
+;  ]
   move-comiloes
   move-limpadores
+  ;reproduzir
   if count turtles = 0
   [
     stop
@@ -144,6 +177,59 @@ to go
   reset-patches
   tick
 end
+
+;to move-comiloes
+;  ask comiloes
+;  [
+;    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
+;    [
+;      ifelse [pcolor] of patch-ahead 1 = red
+;      [
+;        set energia energia - (energia * 0.1)
+;      ]
+;      [
+;        set energia energia - (energia * 0.05)
+;      ]
+;      ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
+;      [
+;        rt 90
+;      ]
+;      [
+;        lt 90
+;      ]
+;    ]
+;    [
+;      ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow
+;      [
+;        ifelse [pcolor] of patch-left-and-ahead 90 1 = red
+;        [
+;          set energia energia - (energia * 0.1)
+;        ]
+;        [
+;          set energia energia - (energia * 0.05)
+;        ]
+;        fd 1
+;      ]
+;      [
+;        ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
+;        [
+;          ifelse [pcolor] of patch-right-and-ahead 90 1 = red
+;          [
+;            set energia energia - (energia * 0.1)
+;          ]
+;          [
+;            set energia energia - (energia * 0.05)
+;          ]
+;          fd 1
+;        ]
+;        [
+;          fd 1
+;        ]
+;      ]
+;    ]
+;    set energia energia - 1
+;  ]
+;end
 
 to move-comiloes
   ask comiloes
@@ -190,7 +276,51 @@ to move-comiloes
           fd 1
         ]
         [
-          fd 1
+          if perc_comiloes? = "Frente" or perc_comiloes? = "Todas"
+          [
+            ifelse [pcolor] of patch-right-and-ahead 45 1 = red or [pcolor] of patch-right-and-ahead 45 1 = yellow
+            [
+              lt 90
+            ]
+            [
+              ifelse [pcolor] of patch-left-and-ahead 45 1 = red or [pcolor] of patch-left-and-ahead 45 1 = yellow
+              [
+                rt 90
+              ]
+              [
+                fd 1
+              ]
+            ]
+
+            if perc_comiloes? = "Todas"
+            [
+              ifelse [pcolor] of patch-right-and-ahead -135 1 = red or [pcolor] of patch-right-and-ahead -135 1 = yellow
+              [
+                set heading 45
+              ]
+              [
+                ifelse [pcolor] of patch-left-and-ahead 135 1 = red or [pcolor] of patch-left-and-ahead 135 1 = yellow
+                [
+                  set pcolor red
+                ]
+                [
+                  ifelse [pcolor] of patch-ahead -1 = red or [pcolor] of patch-ahead -1 = yellow
+                  [
+                    ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
+                    [
+                      rt 90
+                    ]
+                    [
+                      lt 90
+                    ]
+                  ]
+                  [
+                    fd 1
+                  ]
+                ]
+              ]
+            ]
+          ]
         ]
       ]
     ]
@@ -288,6 +418,112 @@ to limpar
   ]
 end
 
+to move-comiloes-frente
+  ask comiloes
+  [
+    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
+    [
+      ifelse [pcolor] of patch-ahead 1 = red
+      [
+        set energia energia - (energia * 0.1)
+      ]
+      [
+        set energia energia - (energia * 0.05)
+      ]
+      ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
+      [
+        rt 90
+      ]
+      [
+        lt 90
+      ]
+    ]
+    [
+      ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow
+      [
+        ifelse [pcolor] of patch-left-and-ahead 90 1 = red
+        [
+          set energia energia - (energia * 0.1)
+        ]
+        [
+          set energia energia - (energia * 0.05)
+        ]
+        fd 1
+      ]
+      [
+        ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
+        [
+          ifelse [pcolor] of patch-right-and-ahead 90 1 = red
+          [
+            set energia energia - (energia * 0.1)
+          ]
+          [
+            set energia energia - (energia * 0.05)
+          ]
+          fd 1
+        ]
+        [
+          ifelse [pcolor] of patch-left-and-ahead 45 1 = red or [pcolor] of patch-left-and-ahead 45 1 = yellow
+          [
+            rt 90
+          ]
+          [
+            ifelse [pcolor] of patch-right-and-ahead 45 1 = red or [pcolor] of patch-right-and-ahead 45 1 = yellow
+            [
+              lt 90
+            ]
+            [
+              fd 1
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+end
+
+to move-comiloes-todos
+end
+
+;to reproduzir
+;  ask comiloes
+;  [
+;    if reproducao? = "reproducao_normal"
+;    [
+;      if count comiloes-on patch-here > 1
+;      [
+;        if random 101 < prob_reproducao
+;        [
+;          hatch 1
+;          [
+;            ;rt 180
+;            ;fd 1
+;            setxy random-xcor random-ycor
+;            set energia energiaInicial
+;            set babies babies + 1
+;          ]
+;        ]
+;      ]
+;    ]
+;    if reproducao? = "reproducao_melhorada"
+;    [
+;      if any? comiloes-on neighbors or (count comiloes-on patch-here > 1)
+;      [
+;        if random 101 < prob_reproducao
+;        [
+;          hatch 1
+;          [
+;            ;rt 180
+;            ;fd 1
+;            setxy random-xcor random-ycor
+;            set energia energiaInicial
+;            set babies babies + 1
+;          ]
+;        ]
+;      ]
+;    ]
+;  ]
+;end
 @#$#@#$#@
 GRAPHICS-WINDOW
 169
@@ -340,7 +576,7 @@ BUTTON
 43
 Go
 go
-T
+NIL
 1
 T
 OBSERVER
@@ -463,7 +699,7 @@ nlimpadores
 nlimpadores
 0
 500
-500.0
+100.0
 20
 1
 NIL
@@ -478,7 +714,7 @@ ncomiloes
 ncomiloes
 0
 500
-500.0
+100.0
 20
 1
 NIL
@@ -491,7 +727,7 @@ SWITCH
 44
 debug?
 debug?
-1
+0
 1
 -1000
 
@@ -539,6 +775,49 @@ energiaInicial
 1
 NIL
 HORIZONTAL
+
+MONITOR
+6
+457
+80
+502
+comiloes
+count comiloes
+17
+1
+11
+
+MONITOR
+89
+457
+164
+502
+limpadores
+count limpadores
+17
+1
+11
+
+MONITOR
+6
+509
+63
+554
+babies
+babies
+17
+1
+11
+
+CHOOSER
+612
+64
+750
+109
+perc_comiloes?
+perc_comiloes?
+"Base" "Frente" "Todas"
+2
 
 @#$#@#$#@
 ## WHAT IS IT?
