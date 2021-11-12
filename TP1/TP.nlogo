@@ -1,529 +1,501 @@
 breed[comiloes comilao]
 breed[limpadores limpador]
+breed[superlimpadores superlimpador]
 
-globals[qntComida qntLixo qntLixoT babies]
+globals [qntComida qntLixo qntLixoT]
 
 turtles-own[energia]
 limpadores-own[qntResiduos]
 
 to setup
-  clear-all
-  ifelse debug?
-  [
-    setup-patches-debug
-    setup-turtles-debug
-  ]
-  [
+    clear-all
     setup-patches
     setup-turtles
-  ]
-  set babies 0
-  reset-ticks
-end
-
-
-to setup-patches-debug
-  ask patch 0 0
-  [
-    set pcolor yellow
-  ]
-;  ask patch -1 0
-;  [
-;    set pcolor red
-;  ]
-end
-
-to setup-turtles-debug
-;  create-limpadores 1
-;  [
-;    let x random 360 ; random entre 0 e 360 para o heading
-;    set shape "bug"
-;    setxy -1 0
-;    set color red
-;    set heading 0
-;    set energia 100
-;  ]
-  create-comiloes 1
-  [
-    let x random 360 ; random entre 0 e 360 para o heading
-    set shape "bug"
-    setxy -1 -1
-    set color red
-    set heading 0
-    set energia 100
-  ]
-;  create-comiloes 1
-;  [
-;    let x random 360 ; random entre 0 e 360 para o heading
-;    set shape "bug"
-;    setxy -1 0
-;    set color red
-;    set heading 90
-;    set energia 100
-;  ]
+    reset-ticks
 end
 
 to setup-patches
-  let x count patches
-  ask patches
-  [
-    ifelse random 101 <= lixo ; adiciona lixo normal
+    ask patches
     [
-      set pcolor yellow
-    ]
-    [
-      ifelse random 101 <= lixotoxico ; adiciona lixo toxico
-      [
-        set pcolor red
-      ]
-      [
-        if random 101 <= alimento ; adiciona alimento
+        ifelse random 101 <= lixo
         [
-          set pcolor green
+            set pcolor yellow
         ]
-      ]
+        [
+            ifelse random 101 <= lixotoxico
+            [
+                set pcolor red
+            ]
+            [
+                if random 101 <= alimento
+                [
+                    set pcolor green
+                ]
+            ]
+        ]
     ]
-  ]
-  ask n-of depositos patches with [pcolor = black] ; adiciona depositos
-  [
-    set pcolor blue
-  ]
-  set qntComida count patches with [pcolor = green] ; guardar as quantidades para manter
-  set qntLixo count patches with [pcolor = yellow]
-  set qntLixoT count patches with [pcolor = red]
+    ask n-of depositos patches with [pcolor = black]
+    [
+        set pcolor blue
+    ]
+    set qntComida count patches with [pcolor = green]
+    set qntLixo count patches with [pcolor = yellow]
+    set qntLixoT count patches with [pcolor = red]
 end
 
 to setup-turtles
-  create-comiloes ncomiloes
-  [
-    let x random 360 ; random entre 0 e 360 para o heading
-    set shape "fish 3"
-    setxy random-xcor random-ycor
-    while [pcolor != black]
+    create-comiloes ncomiloes
     [
-      setxy random-xcor random-ycor
+        let x random 360
+        set shape "fish 3"
+        setxy random-xcor random-ycor
+        while [pcolor != black]
+        [
+            setxy random-xcor random-ycor
+        ]
+        set color red
+        set heading x
+        set energia energiaInicial
     ]
-    set color red
-    set heading x
-    set energia energiaInicial
-  ]
 
-  create-limpadores nlimpadores
-  [
-    let x random 360 ; random entre 0 e 360 para o heading
-    set shape "person soldier"
-    setxy random-xcor random-ycor
-    while [pcolor != black]
+    create-limpadores nlimpadores
     [
-      setxy random-xcor random-ycor
+        let x random 360
+        set shape "person soldier"
+        setxy random-xcor random-ycor
+        while [pcolor != black]
+        [
+            setxy random-xcor random-ycor
+        ]
+        set color yellow
+        set heading x
+        set energia energiaInicial
+        set qntResiduos 0
     ]
-    set color yellow
-    set heading x
-    set energia energiaInicial
-    set qntResiduos 0
-  ]
+    if super_limpador?
+    [
+        create-superlimpadores nsuperlimpador
+        [
+            let x random 360
+            set shape "person farmer"
+            setxy random-xcor random-ycor
+            while [pcolor != black]
+            [
+                setxy random-xcor random-ycor
+            ]
+            set size 2
+            set color blue
+            set heading xcor
+            set energia energiaInicial
+            ;set qntResiduos 0
+        ]
+    ]
 end
 
-to reset-patches ; resetar as quantidades de residuos no individuo
-  if count patches with [pcolor = green] < qntComida
-  [
-    ask n-of (qntComida - count patches with [pcolor = green]) patches with [pcolor = black]
+to reset-patches
+    if count patches with [pcolor = green] < qntComida
     [
-      set pcolor green
+        ask n-of (qntComida - count patches with [pcolor = green]) patches with [pcolor = black]
+        [
+            set pcolor green
+        ]
     ]
-  ]
-
-  if count patches with [pcolor = yellow] < qntLixo
-  [
-    ask n-of (qntLixo - count patches with [pcolor = yellow]) patches with [pcolor = black]
+    if count patches with [pcolor = yellow] < qntLixo
     [
-      set pcolor yellow
+        ask n-of (qntLixo - count patches with [pcolor = yellow]) patches with [pcolor = black]
+        [
+            set pcolor yellow
+        ]
     ]
-  ]
-
-  if count patches with [pcolor = red] < qntComida
-  [
-    ask n-of (qntLixoT - count patches with [pcolor = red]) patches with [pcolor = black]
+    if count patches with [pcolor = red] < qntLixoT
     [
-      set pcolor red
+        ask n-of (qntLixoT - count patches with [pcolor = red]) patches with [pcolor = black]
+        [
+            set pcolor red
+        ]
     ]
-  ]
 end
 
 to go
-  check-death
-  comer
-  limpar
-;  ifelse perc_comiloes? = "Base"
-;  [
-;    move-comiloes
-;  ]
-;  [
-;    ifelse perc_comiloes? = "Frente"
-;    [
-;      move-comiloes-frente
-;    ]
-;    [
-;      move-comiloes-todos
-;    ]
-;  ]
-  move-comiloes
-  move-limpadores
-  ;reproduzir
-  if count turtles = 0
-  [
-    stop
-  ]
-  reset-patches
-  tick
+    move-limpadores
+    limpar
+    move-comiloes
+    comer
+    if count turtles = 0
+    [
+        stop
+    ]
+    if super_limpador?
+    [
+        move-superlimpadores
+    ]
+    check-death
+    reset-patches
+    tick
 end
 
-;to move-comiloes
-;  ask comiloes
-;  [
-;    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
-;    [
-;      ifelse [pcolor] of patch-ahead 1 = red
-;      [
-;        set energia energia - (energia * 0.1)
-;      ]
-;      [
-;        set energia energia - (energia * 0.05)
-;      ]
-;      ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
-;      [
-;        rt 90
-;      ]
-;      [
-;        lt 90
-;      ]
-;    ]
-;    [
-;      ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow
-;      [
-;        ifelse [pcolor] of patch-left-and-ahead 90 1 = red
-;        [
-;          set energia energia - (energia * 0.1)
-;        ]
-;        [
-;          set energia energia - (energia * 0.05)
-;        ]
-;        fd 1
-;      ]
-;      [
-;        ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
-;        [
-;          ifelse [pcolor] of patch-right-and-ahead 90 1 = red
-;          [
-;            set energia energia - (energia * 0.1)
-;          ]
-;          [
-;            set energia energia - (energia * 0.05)
-;          ]
-;          fd 1
-;        ]
-;        [
-;          fd 1
-;        ]
-;      ]
-;    ]
-;    set energia energia - 1
-;  ]
-;end
-
 to move-comiloes
-  ask comiloes
-  [
-    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
+    ask comiloes
     [
-      ifelse [pcolor] of patch-ahead 1 = red
-      [
-        set energia energia - (energia * 0.1)
-      ]
-      [
-        set energia energia - (energia * 0.05)
-      ]
-      ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
-      [
-        rt 90
-      ]
-      [
-        lt 90
-      ]
-    ]
-    [
-      ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow
-      [
-        ifelse [pcolor] of patch-left-and-ahead 90 1 = red
+        ifelse patch-ahead 1 = nobody
         [
-          set energia energia - (energia * 0.1)
-        ]
-        [
-          set energia energia - (energia * 0.05)
-        ]
-        fd 1
-      ]
-      [
-        ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
-        [
-          ifelse [pcolor] of patch-right-and-ahead 90 1 = red
-          [
-            set energia energia - (energia * 0.1)
-          ]
-          [
-            set energia energia - (energia * 0.05)
-          ]
-          fd 1
-        ]
-        [
-          if perc_comiloes? = "Frente" or perc_comiloes? = "Todas"
-          [
-            ifelse [pcolor] of patch-right-and-ahead 45 1 = red or [pcolor] of patch-right-and-ahead 45 1 = yellow
+            ifelse random 101 < 50
             [
-              lt 90
+                rt 180
             ]
             [
-              ifelse [pcolor] of patch-left-and-ahead 45 1 = red or [pcolor] of patch-left-and-ahead 45 1 = yellow
-              [
-                rt 90
-              ]
-              [
-                fd 1
-              ]
-            ]
-
-            if perc_comiloes? = "Todas"
-            [
-              ifelse [pcolor] of patch-right-and-ahead -135 1 = red or [pcolor] of patch-right-and-ahead -135 1 = yellow
-              [
-                set heading 45
-              ]
-              [
-                ifelse [pcolor] of patch-left-and-ahead 135 1 = red or [pcolor] of patch-left-and-ahead 135 1 = yellow
+                ifelse random 101 < 50
                 [
-                  set pcolor red
+                    rt 90
                 ]
                 [
-                  ifelse [pcolor] of patch-ahead -1 = red or [pcolor] of patch-ahead -1 = yellow
-                  [
-                    ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
-                    [
-                      rt 90
-                    ]
-                    [
-                      lt 90
-                    ]
-                  ]
-                  [
+                    lt 90
+                ]
+            ]
+        ]
+        [
+        ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
+            [
+                ifelse [pcolor] of patch-ahead 1 = red
+                [
+                    set energia energia - (energia * 0.1) ; patch vermelha
+                ]
+                [
+                    set energia energia - (energia * 0.05) ; patch amarela
+                ]
+                ifelse random 101 < 50
+                [
+                    rt 90
+                ]
+                [
+                    lt 90
+                ]
+            ]
+            [
+                ifelse patch-left-and-ahead 90 1 = nobody
+                [
                     fd 1
-                  ]
                 ]
-              ]
+                [
+                    ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow or [pcolor] of patch-left-and-ahead 90 1 = green
+                    [
+                        ifelse [pcolor] of patch-left-and-ahead 90 1 = red
+                        [
+                            set energia energia - (energia * 0.1) ; patch vermelha
+                        ]
+                        [
+                            set energia energia - (energia * 0.05) ; patch amarela
+                        ]
+                        fd 1
+                    ]
+                    [
+                        ifelse patch-right-and-ahead 90 1 = nobody
+                        [
+                            fd 1
+                        ]
+                        [
+                            ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
+                            [
+                                ifelse [pcolor] of patch-right-and-ahead 90 1 = red
+                                [
+                                    set energia energia - (energia * 0.1)
+                                ]
+                                [
+                                    set energia energia - (energia * 0.05)
+                                ]
+                                fd 1
+                            ]
+                            [
+                                ifelse perc_comiloes? = "Frente e Comida"
+                                [
+                                    ifelse patch-left-and-ahead 45 1 = nobody
+                                    [
+                                        fd 1
+                                    ]
+                                    [
+                                        ifelse [pcolor] of patch-left-and-ahead 45 1 = red or [pcolor] of patch-left-and-ahead 45 1 = yellow
+                                        [
+                                            rt 45
+                                        ]
+                                        [
+                                            ifelse patch-right-and-ahead 45 1 = nobody
+                                            [
+                                                fd 1
+                                            ]
+                                            [
+                                                ifelse [pcolor] of patch-right-and-ahead 45 1 = red or [pcolor] of patch-right-and-ahead 45 1 = yellow
+                                                [
+                                                    lt 45
+                                                ]
+                                                [
+                                                    ifelse [pcolor] of patch-left-and-ahead 90 1 = green
+                                                    [
+                                                        lt 90
+                                                    ]
+                                                    [
+                                                        ifelse [pcolor] of patch-right-and-ahead 90 1 = green
+                                                        [
+                                                            rt 90
+                                                        ]
+                                                        [
+                                                            ifelse [pcolor] of patch-left-and-ahead 45 1 = green
+                                                            [
+                                                                lt 45
+                                                            ]
+                                                            [
+                                                                ifelse [pcolor] of patch-right-and-ahead 45 1 = green
+                                                                [
+                                                                    rt 45
+                                                                ]
+                                                                [
+                                                                    fd 1
+                                                                ]
+                                                            ]
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                                [
+                                    ifelse perc_comiloes? = "Comida"
+                                    [
+                                        ifelse [pcolor] of patch-left-and-ahead 90 1 = green
+                                        [
+                                            lt 90
+                                        ]
+                                        [
+                                            ifelse [pcolor] of patch-right-and-ahead 90 1 = green
+                                            [
+                                                rt 90
+                                            ]
+                                            [
+                                                fd 1
+                                            ]
+                                        ]
+                                    ]
+                                    [
+                                        fd 1
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
             ]
-          ]
         ]
-      ]
+        set energia energia - 1
     ]
-    set energia energia - 1
-  ]
 end
 
 to move-limpadores
-  ask limpadores
-  [
-    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
+    ask limpadores
     [
-      fd 1
+        ifelse patch-ahead 1 = nobody
+        [
+            ifelse random 101 < 50
+            [
+                rt 180
+            ]
+            [
+                ifelse random 101 < 50
+                [
+                    rt 90
+                ]
+                [
+                    lt 90
+                ]
+            ]
+        ]
+        [
+            ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
+            [
+                fd 1
+            ]
+            [
+                ifelse patch-right-and-ahead 90 1 = nobody
+                [
+                    fd 1
+                ]
+                [
+                    ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
+                    [
+                        rt 90
+                    ]
+                    [
+                        ifelse perc_limpadores? = "Frente"
+                        [
+                            ifelse patch-left-and-ahead 90 1 = nobody
+                            [
+                                fd 1
+                            ]
+                            [
+                                ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow
+                                [
+                                    lt 90
+                                ]
+                                [
+                                    ifelse patch-right-and-ahead 45 1 = nobody
+                                    [
+                                        fd 1
+                                    ]
+                                    [
+                                        ifelse [pcolor] of patch-right-and-ahead 45 1 = red or [pcolor] of patch-right-and-ahead 45 1 = yellow
+                                        [
+                                            rt 45
+                                        ]
+                                        [
+                                            ifelse patch-left-and-ahead 45 1 = nobody
+                                            [
+                                                fd 1
+                                            ]
+                                            [
+                                                ifelse [pcolor] of patch-left-and-ahead 45 1 = red or [pcolor] of patch-left-and-ahead 45 1 = yellow
+                                                [
+                                                    lt 45
+                                                ]
+                                                [
+                                                    fd 1
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                        [
+                            fd 1
+                        ]
+                    ]
+                ]
+            ]
+        ]
+        set energia energia - 1
     ]
+end
+
+to move-superlimpadores
+    ask superlimpadores
     [
-      ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
-      [
-        rt 90
-      ]
-      [
-        fd 1
-      ]
+        if any? neighbors with [pcolor = red or pcolor = yellow]
+        [
+            ask neighbors
+            [
+                if pcolor = red or pcolor = yellow
+                [
+                    set pcolor black
+                ]
+            ]
+            if [pcolor] of patch-here = red or [pcolor] of patch-here = yellow
+            [
+                set pcolor black
+            ]
+        ]
+        ifelse patch-ahead 1 = nobody
+        [
+            ifelse random 101 < 50
+            [
+                rt 180
+            ]
+            [
+                ifelse random 101 < 50
+                [
+                    rt 90
+                ]
+                [
+                    lt 90
+                ]
+            ]
+        ]
+        [
+            ifelse random 101 < 50
+            [
+                fd 1
+            ]
+            [
+                ifelse random 101 < 50
+                [
+                    rt 90
+                ]
+                [
+                    lt 90
+                ]
+            ]
+        ]
     ]
-    set energia energia - 1
-  ]
 end
 
 to check-death
-  ask turtles
-  [
-    if energia <= 0
+    ask turtles
     [
-      die
+        if energia <= 0
+        [
+            die
+        ]
     ]
-  ]
 
-  ask comiloes
-  [
-    if [pcolor] of patch-here = red or [pcolor] of patch-here = yellow
+    ask comiloes
     [
-      die
+        if [pcolor] of patch-here = red or [pcolor] of patch-here = yellow
+        [
+            die
+        ]
     ]
-  ]
 end
 
 to comer
-  ask comiloes
-  [
-    if [pcolor] of patch-here = green
+    ask comiloes
     [
-      set pcolor black
-      set energia energia + energiaAlimento
+        if [pcolor] of patch-here = green
+        [
+            set pcolor black
+            set energia energia + energiaAlimento
+        ]
     ]
-  ]
-  ask limpadores
-  [
-    if [pcolor] of patch-here = green
+
+    ask limpadores
     [
-      set pcolor black
-      ifelse qntResiduos < (transporte / 2)
-      [
-        set energia energia + energiaAlimento
-      ]
-      [
-        set energia energia + (energiaAlimento / 2)
-      ]
+        if [pcolor] of patch-here = green
+        [
+            set pcolor black
+            ifelse qntResiduos < (transporte / 2)
+            [
+                set energia energia + energiaAlimento
+            ]
+            [
+                set energia energia + (energiaAlimento / 2)
+            ]
+        ]
     ]
-  ]
 end
 
 to limpar
-  ask limpadores
-  [
-    if qntResiduos < transporte - 1 ; para nao ultrapassar o max
+    ask limpadores
     [
-      if [pcolor] of patch-here = red
-      [
-        set qntResiduos qntResiduos + 2
-        set pcolor black
-      ]
-    ]
-    if qntResiduos < transporte
-    [
-      if [pcolor] of patch-here = yellow
-      [
-        set qntResiduos qntResiduos + 1
-        set pcolor black
-      ]
-    ]
-    if [pcolor] of patch-here = blue
-    [
-      set energia energia + (10 * qntResiduos)
-      set qntResiduos 0
-    ]
-  ]
-end
-
-to move-comiloes-frente
-  ask comiloes
-  [
-    ifelse [pcolor] of patch-ahead 1 = red or [pcolor] of patch-ahead 1 = yellow
-    [
-      ifelse [pcolor] of patch-ahead 1 = red
-      [
-        set energia energia - (energia * 0.1)
-      ]
-      [
-        set energia energia - (energia * 0.05)
-      ]
-      ifelse random 101 < 50 ; 50% probabilidade de virar para cada lado
-      [
-        rt 90
-      ]
-      [
-        lt 90
-      ]
-    ]
-    [
-      ifelse [pcolor] of patch-left-and-ahead 90 1 = red or [pcolor] of patch-left-and-ahead 90 1 = yellow
-      [
-        ifelse [pcolor] of patch-left-and-ahead 90 1 = red
+        if qntResiduos < transporte - 1 ; para nao ultrapassar o max
         [
-          set energia energia - (energia * 0.1)
-        ]
-        [
-          set energia energia - (energia * 0.05)
-        ]
-        fd 1
-      ]
-      [
-        ifelse [pcolor] of patch-right-and-ahead 90 1 = red or [pcolor] of patch-right-and-ahead 90 1 = yellow
-        [
-          ifelse [pcolor] of patch-right-and-ahead 90 1 = red
-          [
-            set energia energia - (energia * 0.1)
-          ]
-          [
-            set energia energia - (energia * 0.05)
-          ]
-          fd 1
-        ]
-        [
-          ifelse [pcolor] of patch-left-and-ahead 45 1 = red or [pcolor] of patch-left-and-ahead 45 1 = yellow
-          [
-            rt 90
-          ]
-          [
-            ifelse [pcolor] of patch-right-and-ahead 45 1 = red or [pcolor] of patch-right-and-ahead 45 1 = yellow
+            if [pcolor] of patch-here = red
             [
-              lt 90
+                set qntResiduos qntResiduos + 2
+                set pcolor black
             ]
-            [
-              fd 1
-            ]
-          ]
         ]
-      ]
+        if qntResiduos < transporte
+        [
+            if [pcolor] of patch-here = yellow
+            [
+                set qntResiduos qntResiduos + 1
+                set pcolor black
+            ]
+        ]
+        if [pcolor] of patch-here = blue
+        [
+            set energia energia + (10 * qntResiduos)
+            set qntResiduos 0
+        ]
     ]
-  ]
 end
-
-to move-comiloes-todos
-end
-
-;to reproduzir
-;  ask comiloes
-;  [
-;    if reproducao? = "reproducao_normal"
-;    [
-;      if count comiloes-on patch-here > 1
-;      [
-;        if random 101 < prob_reproducao
-;        [
-;          hatch 1
-;          [
-;            ;rt 180
-;            ;fd 1
-;            setxy random-xcor random-ycor
-;            set energia energiaInicial
-;            set babies babies + 1
-;          ]
-;        ]
-;      ]
-;    ]
-;    if reproducao? = "reproducao_melhorada"
-;    [
-;      if any? comiloes-on neighbors or (count comiloes-on patch-here > 1)
-;      [
-;        if random 101 < prob_reproducao
-;        [
-;          hatch 1
-;          [
-;            ;rt 180
-;            ;fd 1
-;            setxy random-xcor random-ycor
-;            set energia energiaInicial
-;            set babies babies + 1
-;          ]
-;        ]
-;      ]
-;    ]
-;  ]
-;end
 @#$#@#$#@
 GRAPHICS-WINDOW
 169
@@ -539,8 +511,8 @@ GRAPHICS-WINDOW
 1
 1
 0
-1
-1
+0
+0
 1
 -16
 16
@@ -553,10 +525,10 @@ ticks
 30.0
 
 BUTTON
-5
-10
-60
-43
+109
+378
+164
+411
 Setup
 setup
 NIL
@@ -570,13 +542,13 @@ NIL
 1
 
 BUTTON
-111
-10
-166
-43
+109
+413
+164
+446
 Go
 go
-NIL
+T
 1
 T
 OBSERVER
@@ -587,10 +559,10 @@ NIL
 1
 
 SLIDER
-3
-56
-36
-148
+5
+69
+38
+161
 lixo
 lixo
 0
@@ -602,10 +574,10 @@ NIL
 VERTICAL
 
 SLIDER
-44
-56
-77
-148
+46
+69
+79
+161
 lixotoxico
 lixotoxico
 0
@@ -617,10 +589,10 @@ NIL
 VERTICAL
 
 SLIDER
-86
-57
-119
-149
+88
+70
+121
+162
 alimento
 alimento
 5
@@ -632,25 +604,25 @@ NIL
 VERTICAL
 
 SLIDER
-128
-57
-161
-149
+130
+70
+163
+162
 depositos
 depositos
 0
 10
-4.0
+0.0
 1
 1
 NIL
 VERTICAL
 
 MONITOR
-6
-351
-79
-396
+611
+246
+684
+291
 lixo
 count patches with [pcolor = yellow]
 17
@@ -658,10 +630,10 @@ count patches with [pcolor = yellow]
 11
 
 MONITOR
-90
-350
-164
-395
+685
+246
+759
+291
 ltoxico
 count patches with [pcolor = red]
 17
@@ -669,10 +641,10 @@ count patches with [pcolor = red]
 11
 
 MONITOR
-6
-401
-79
-446
+611
+296
+684
+341
 comida
 count patches with [pcolor = green]
 17
@@ -680,10 +652,10 @@ count patches with [pcolor = green]
 11
 
 MONITOR
-90
-402
-164
-447
+685
+298
+759
+343
 depositos
 count patches with [pcolor = blue]
 17
@@ -691,51 +663,40 @@ count patches with [pcolor = blue]
 11
 
 SLIDER
-4
-233
-163
-266
+5
+342
+164
+375
 nlimpadores
 nlimpadores
 0
 500
-100.0
-20
+0.0
+10
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+306
+164
+339
+ncomiloes
+ncomiloes
+0
+500
+50.0
+10
 1
 NIL
 HORIZONTAL
 
 SLIDER
 4
-191
+204
 163
-224
-ncomiloes
-ncomiloes
-0
-500
-100.0
-20
-1
-NIL
-HORIZONTAL
-
-SWITCH
-610
-11
-700
-44
-debug?
-debug?
-0
-1
--1000
-
-SLIDER
-4
-271
-163
-304
+237
 energiaAlimento
 energiaAlimento
 0
@@ -748,14 +709,14 @@ HORIZONTAL
 
 SLIDER
 4
-309
+240
 163
-342
+273
 transporte
 transporte
 0
 20
-20.0
+0.0
 1
 1
 NIL
@@ -763,9 +724,9 @@ HORIZONTAL
 
 SLIDER
 4
-154
-161
-187
+167
+163
+200
 energiaInicial
 energiaInicial
 0
@@ -777,10 +738,10 @@ NIL
 HORIZONTAL
 
 MONITOR
-6
-457
-80
-502
+611
+352
+685
+397
 comiloes
 count comiloes
 17
@@ -788,36 +749,162 @@ count comiloes
 11
 
 MONITOR
-89
-457
-164
-502
+684
+353
+759
+398
 limpadores
 count limpadores
 17
 1
 11
 
+CHOOSER
+611
+40
+755
+85
+perc_comiloes?
+perc_comiloes?
+"Base" "Comida" "Frente e Comida"
+0
+
+CHOOSER
+612
+93
+756
+138
+perc_limpadores?
+perc_limpadores?
+"Base" "Frente"
+0
+
+SWITCH
+612
+143
+757
+176
+super_limpador?
+super_limpador?
+1
+1
+-1000
+
+SLIDER
+612
+183
+757
+216
+nsuperlimpador
+nsuperlimpador
+0
+5
+0.0
+1
+1
+NIL
+HORIZONTAL
+
 MONITOR
-6
-509
-63
-554
-babies
-babies
+611
+403
+760
+448
+superlimpadores
+count superlimpadores
 17
 1
 11
 
-CHOOSER
-612
-64
-750
-109
-perc_comiloes?
-perc_comiloes?
-"Base" "Frente" "Todas"
-2
+TEXTBOX
+38
+13
+143
+33
+Modelo Base
+16
+0.0
+0
+
+TEXTBOX
+18
+40
+168
+58
+Variáveis de ambiente
+14
+0.0
+1
+
+TEXTBOX
+5
+283
+171
+317
+Configuração dos Agentes
+14
+0.0
+1
+
+TEXTBOX
+617
+15
+767
+35
+Modelo Melhorado
+16
+0.0
+1
+
+TEXTBOX
+616
+225
+766
+243
+Monitores do Sistema
+14
+0.0
+1
+
+TEXTBOX
+34
+403
+89
+421
+Simular
+14
+0.0
+1
+
+TEXTBOX
+300
+460
+479
+487
+Pedro Correia - 2018020558\n
+13
+0.0
+1
+
+TEXTBOX
+283
+481
+483
+513
+Introdução à Inteligência Artificial
+13
+0.0
+1
+
+TEXTBOX
+351
+504
+501
+522
+2021/2022
+13
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -1056,6 +1143,21 @@ Rectangle -7500403 true true 127 79 172 94
 Polygon -7500403 true true 195 90 240 150 225 180 165 105
 Polygon -7500403 true true 105 90 60 150 75 180 135 105
 
+person farmer
+false
+0
+Polygon -7500403 true true 105 90 120 195 90 285 105 300 135 300 150 225 165 300 195 300 210 285 180 195 195 90
+Polygon -1 true false 60 195 90 210 114 154 120 195 180 195 187 157 210 210 240 195 195 90 165 90 150 105 150 150 135 90 105 90
+Circle -7500403 true true 110 5 80
+Rectangle -7500403 true true 127 79 172 94
+Polygon -13345367 true false 120 90 120 180 120 195 90 285 105 300 135 300 150 225 165 300 195 300 210 285 180 195 180 90 172 89 165 135 135 135 127 90
+Polygon -6459832 true false 116 4 113 21 71 33 71 40 109 48 117 34 144 27 180 26 188 36 224 23 222 14 178 16 167 0
+Line -16777216 false 225 90 270 90
+Line -16777216 false 225 15 225 90
+Line -16777216 false 270 15 270 90
+Line -16777216 false 247 15 247 90
+Rectangle -6459832 true false 240 90 255 300
+
 person soldier
 false
 0
@@ -1206,39 +1308,49 @@ NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="10" runMetricsEveryStep="true">
+  <experiment name="line1" repetitions="10" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
-    <metric>count turtles</metric>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="nlimpadores">
-      <value value="80"/>
+      <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="depositos">
-      <value value="10"/>
+      <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="transporte">
-      <value value="10"/>
+      <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="energiaAlimento">
-      <value value="25"/>
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="energiaInicial">
       <value value="100"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="debug?">
+    <enumeratedValueSet variable="super_limpador?">
       <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="ncomiloes">
-      <value value="500"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="alimento">
       <value value="20"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="lixotoxico">
-      <value value="2"/>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="lixo">
-      <value value="2"/>
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
