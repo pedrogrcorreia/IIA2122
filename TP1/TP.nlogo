@@ -671,7 +671,7 @@ nlimpadores
 nlimpadores
 0
 100
-25.0
+100.0
 10
 1
 NIL
@@ -686,7 +686,7 @@ ncomiloes
 ncomiloes
 0
 100
-50.0
+100.0
 10
 1
 NIL
@@ -786,7 +786,7 @@ SWITCH
 176
 super_limpador?
 super_limpador?
-1
+0
 1
 -1000
 
@@ -799,7 +799,7 @@ nsuperlimpador
 nsuperlimpador
 0
 5
-0.0
+5.0
 1
 1
 NIL
