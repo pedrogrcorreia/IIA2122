@@ -597,7 +597,7 @@ alimento
 alimento
 5
 20
-20.0
+15.0
 1
 1
 NIL
@@ -612,7 +612,7 @@ depositos
 depositos
 0
 10
-0.0
+5.0
 1
 1
 NIL
@@ -630,9 +630,9 @@ count patches with [pcolor = yellow]
 11
 
 MONITOR
-685
+684
 246
-759
+757
 291
 ltoxico
 count patches with [pcolor = red]
@@ -652,10 +652,10 @@ count patches with [pcolor = green]
 11
 
 MONITOR
-685
-298
-759
-343
+684
+296
+757
+341
 depositos
 count patches with [pcolor = blue]
 17
@@ -670,8 +670,8 @@ SLIDER
 nlimpadores
 nlimpadores
 0
-500
-0.0
+100
+25.0
 10
 1
 NIL
@@ -685,7 +685,7 @@ SLIDER
 ncomiloes
 ncomiloes
 0
-500
+100
 50.0
 10
 1
@@ -716,7 +716,7 @@ transporte
 transporte
 0
 20
-0.0
+10.0
 1
 1
 NIL
@@ -739,9 +739,9 @@ HORIZONTAL
 
 MONITOR
 611
-352
-685
-397
+346
+684
+391
 comiloes
 count comiloes
 17
@@ -750,9 +750,9 @@ count comiloes
 
 MONITOR
 684
-353
-759
-398
+346
+757
+391
 limpadores
 count limpadores
 17
@@ -767,7 +767,7 @@ CHOOSER
 perc_comiloes?
 perc_comiloes?
 "Base" "Comida" "Frente e Comida"
-0
+2
 
 CHOOSER
 612
@@ -777,7 +777,7 @@ CHOOSER
 perc_limpadores?
 perc_limpadores?
 "Base" "Frente"
-0
+1
 
 SWITCH
 612
@@ -807,9 +807,9 @@ HORIZONTAL
 
 MONITOR
 611
-403
-760
-448
+400
+758
+445
 superlimpadores
 count superlimpadores
 17
@@ -851,7 +851,7 @@ TEXTBOX
 15
 767
 35
-Modelo Melhorado
+Modelo Otimizado
 16
 0.0
 1
@@ -1308,9 +1308,286 @@ NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="line1" repetitions="10" runMetricsEveryStep="true">
+  <experiment name="tb1line1" repetitions="10" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line2" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line3" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line4" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line5" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line6" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line7" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
     <metric>count comiloes</metric>
     <metric>ticks</metric>
     <enumeratedValueSet variable="perc_limpadores?">
@@ -1345,6 +1622,2213 @@ NetLogo 6.2.0
     </enumeratedValueSet>
     <enumeratedValueSet variable="perc_comiloes?">
       <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line8" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb1line9" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line1" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line2" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line3" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line4" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line5" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line6" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line7" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line8" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb2line9" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count comiloes = 0</exitCondition>
+    <metric>count comiloes</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line2" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line3" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line4" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line5" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line6" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line7" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line8" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line9" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb3line1" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="25000"/>
+    <exitCondition>count limpadores = 0</exitCondition>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line1" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line2" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line3" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line4" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line5" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line6" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line7" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line8" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb4line9" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Base&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line1" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line2" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line3" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line4" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line5" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line6" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line7" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line8" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb5line9" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line1" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line2" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line3" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line4" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line5" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line6" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line7" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line8" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixo">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lixotoxico">
+      <value value="5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="tb6line9" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10000"/>
+    <metric>count comiloes</metric>
+    <metric>count limpadores</metric>
+    <metric>ticks</metric>
+    <enumeratedValueSet variable="perc_limpadores?">
+      <value value="&quot;Frente&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nlimpadores">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="depositos">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="transporte">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaAlimento">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="nsuperlimpador">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="energiaInicial">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="super_limpador?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alimento">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="ncomiloes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="perc_comiloes?">
+      <value value="&quot;Frente e Comida&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="lixo">
       <value value="5"/>

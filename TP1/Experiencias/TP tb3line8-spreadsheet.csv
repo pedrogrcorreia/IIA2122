@@ -1,0 +1,24 @@
+"BehaviorSpace results (NetLogo 6.2.0)"
+"TP.nlogo"
+"tb3line8"
+"11/12/2021 15:29:56:265 +0000"
+"min-pxcor","max-pxcor","min-pycor","max-pycor"
+"-16","16","-16","16"
+"[run number]","1","1","2","2","3","3","4","4","5","5","6","6","7","7","8","8","9","9","10","10"
+"perc_limpadores?","Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",
+"nlimpadores","100",,"100",,"100",,"100",,"100",,"100",,"100",,"100",,"100",,"100",
+"depositos","10",,"10",,"10",,"10",,"10",,"10",,"10",,"10",,"10",,"10",
+"transporte","10",,"10",,"10",,"10",,"10",,"10",,"10",,"10",,"10",,"10",
+"energiaAlimento","0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",
+"nsuperlimpador","0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",
+"energiaInicial","100",,"100",,"100",,"100",,"100",,"100",,"100",,"100",,"100",,"100",
+"super_limpador?","false",,"false",,"false",,"false",,"false",,"false",,"false",,"false",,"false",,"false",
+"alimento","5",,"5",,"5",,"5",,"5",,"5",,"5",,"5",,"5",,"5",
+"ncomiloes","0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",,"0",
+"perc_comiloes?","Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",,"Base",
+"lixo","15",,"15",,"15",,"15",,"15",,"15",,"15",,"15",,"15",,"15",
+"lixotoxico","15",,"15",,"15",,"15",,"15",,"15",,"15",,"15",,"15",,"15",
+"[steps]","620","620","880","880","1560","1560","420","420","1090","1090","730","730","450","450","800","800","620","620","890","890"
+
+"[initial & final values]","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks","count limpadores","ticks"
+,"0","620","0","880","0","1560","0","420","0","1090","0","730","0","450","0","800","0","620","0","890"
